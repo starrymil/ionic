@@ -139,7 +139,7 @@ export class Searchbar {
   @Prop({ state: true }) value: string;
 
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     this.positionElements();
   }
 

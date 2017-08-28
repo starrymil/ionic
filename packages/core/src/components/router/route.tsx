@@ -21,7 +21,7 @@ export class Route {
   //@Prop() match: any;
   @State() match: any = {};
 
-  ionViewWillLoad() {
+  componentWillLoad() {
 /*
     this.routerInstance = document.querySelector(this.router)
 

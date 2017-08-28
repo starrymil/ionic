@@ -113,7 +113,7 @@ export class Select {
   @Event() ionCancel: EventEmitter;
 
 
-  ionViewWillLoad() {
+  componentWillLoad() {
     // Get the parent item
     this.item = this.el.closest('ion-item') as HostElement;
 

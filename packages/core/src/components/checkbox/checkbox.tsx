@@ -101,7 +101,7 @@ export class Checkbox {
   @Prop({ state: true }) value: string;
 
 
-  ionViewWillLoad() {
+  componentWillLoad() {
     this.emitStyle();
   }
 

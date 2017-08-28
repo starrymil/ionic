@@ -84,13 +84,13 @@ export class Tab {
     };
   }
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     setTimeout(() => {
       this.ionTabDidLoad.emit({ tab: this })
     }, 0)
   }
 
-  ionViewDidUnload() {
+  componentDidUnload() {
     this.ionTabDidLoad.emit({ tab: this })
   }
 

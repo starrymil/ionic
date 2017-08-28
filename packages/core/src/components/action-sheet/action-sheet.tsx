@@ -110,7 +110,7 @@ export class ActionSheet {
     });
   }
 
-  protected ionViewDidUnload() {
+  protected componentDidUnload() {
     this.ionActionSheetDidUnload.emit({ actionSheet: this });
   }
 
@@ -122,7 +122,7 @@ export class ActionSheet {
     this.dismiss();
   }
 
-  protected ionViewDidLoad() {
+  componentDidLoad() {
     this.ionActionSheetDidLoad.emit({ actionSheet: this });
   }
 

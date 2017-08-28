@@ -182,7 +182,7 @@ export class Textarea implements TextareaComponent {
     }
   }
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     this.emitStyle();
   }
 

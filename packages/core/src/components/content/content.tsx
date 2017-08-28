@@ -42,7 +42,7 @@ export class Content {
   headerHeight: string;
 
 
-  ionViewDidUnload() {
+  componentDidUnload() {
     this.$fixed = this.$scroll = this.$siblingFooter = this.$siblingHeader = this.$scrollDetail = null;
   }
 

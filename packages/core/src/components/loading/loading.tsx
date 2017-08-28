@@ -121,7 +121,7 @@ export class Loading {
     });
   }
 
-  protected ionViewDidUnload() {
+  protected componentDidUnload() {
     this.ionLoadingDidUnload.emit({ loading: this });
   }
 
@@ -133,7 +133,7 @@ export class Loading {
     this.dismiss();
   }
 
-  protected ionViewDidLoad() {
+  componentDidLoad() {
     if (!this.spinner) {
       let defaultSpinner = 'lines';
 

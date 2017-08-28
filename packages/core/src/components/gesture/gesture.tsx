@@ -50,7 +50,7 @@ export class Gesture {
   @Prop({ context: 'dom'}) domController: DomController;
   @Prop({ context: 'enableListener'}) enableListener: EventListenerEnable;
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     // in this case, we already know the GestureController and Gesture are already
     // apart of the same bundle, so it's safe to load it this way
     // only create one instance of GestureController, and reuse the same one later
@@ -377,7 +377,7 @@ export class Gesture {
   }
 
 
-  ionViewDidUnload() {
+  componentDidUnload() {
     if (this.blocker) {
       this.blocker.destroy();
       this.blocker = null;

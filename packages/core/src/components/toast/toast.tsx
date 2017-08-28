@@ -112,7 +112,7 @@ export class Toast {
     });
   }
 
-  protected ionViewDidUnload() {
+  protected componentDidUnload() {
     this.ionToastDidUnload.emit({ toast: this });
   }
 
@@ -124,7 +124,7 @@ export class Toast {
     this.dismiss();
   }
 
-  protected ionViewDidLoad() {
+  protected componentDidLoad() {
     this.ionToastDidLoad.emit({ toast: this });
   }
 

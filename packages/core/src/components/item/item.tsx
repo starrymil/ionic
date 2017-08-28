@@ -44,7 +44,7 @@ export class Item {
     return this.label ? this.label.getText() : '';
   }
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     // Add item-button classes to each ion-button in the item
     const buttons = this.el.querySelectorAll('ion-button') as any;
     for (var i = 0; i < buttons.length; i++) {

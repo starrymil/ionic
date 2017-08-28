@@ -72,7 +72,7 @@ export class FabButton {
    */
   @Prop() disabled: boolean = false;
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     const parentNode = this.el.parentNode.nodeName;
 
     this.inList = (parentNode === 'ION-FAB-LIST');

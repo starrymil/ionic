@@ -115,7 +115,7 @@ export class Alert {
   }
 
 
-  protected ionViewDidUnload() {
+  protected componentDidUnload() {
     this.ionAlertDidUnload.emit({ alert: this });
   }
 
@@ -127,7 +127,7 @@ export class Alert {
     this.dismiss();
   }
 
-  protected ionViewDidLoad() {
+  componentDidLoad() {
     this.ionAlertDidLoad.emit({ alert: this });
   }
 

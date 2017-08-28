@@ -124,11 +124,11 @@ export class Modal {
     this.dismiss();
   }
 
-  protected ionViewDidLoad() {
+  componentDidLoad() {
     this.ionModalDidLoad.emit({ modal: this });
   }
 
-  protected ionViewDidUnload() {
+  protected componentDidUnload() {
     this.ionModalDidUnload.emit({ modal: this });
   }
 

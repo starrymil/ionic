@@ -186,7 +186,7 @@ export class ItemSliding {
    */
   @Event() ionDrag: EventEmitter;
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     const options = this.el.querySelectorAll('ion-item-options') as NodeListOf<HostElement>;
 
     let sides = 0;

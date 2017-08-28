@@ -238,7 +238,7 @@ export class Popover {
     });
   }
 
-  protected ionViewDidUnload() {
+  protected componentDidUnload() {
     this.ionPopoverDidUnload.emit({ popover: this });
   }
 
@@ -250,7 +250,7 @@ export class Popover {
     this.dismiss();
   }
 
-  protected ionViewDidLoad() {
+  protected componentDidLoad() {
     this.ionPopoverDidLoad.emit({ popover: this });
   }
 

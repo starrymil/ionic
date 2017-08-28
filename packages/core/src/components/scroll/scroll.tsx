@@ -30,7 +30,7 @@ export class Scroll {
   @Prop() ionScroll: ScrollCallback;
   @Prop() ionScrollEnd: ScrollCallback;
 
-  ionViewDidLoad() {
+  componentDidLoad() {
     if (this.isServer) return;
 
     const gestureCtrl = Context.gesture = Context.gesture || new GestureController;
@@ -347,7 +347,7 @@ export class Scroll {
   }
 
 
-  ionViewDidUnload() {
+  componentDidUnload() {
     this.gesture && this.gesture.destroy();
     this.gesture = this.detail = this.detail.event = null;
   }
