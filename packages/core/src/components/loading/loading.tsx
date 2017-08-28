@@ -1,5 +1,5 @@
 import { Animation, AnimationBuilder, AnimationController, Config } from '../../index';
-import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
+import { Component, DomController, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
 
 import iOSEnterAnimation from './animations/ios.enter';
 import iOSLeaveAnimation from './animations/ios.leave';
@@ -35,6 +35,8 @@ export class Loading {
 
   @Prop({ connect: 'ion-animation-controller' }) animationCtrl: AnimationController;
   @Prop({ context: 'config' }) config: Config;
+  @Prop({ context: 'dom'}) domController: DomController;
+
   @Prop() cssClass: string;
   @Prop() content: string;
   @Prop() dismissOnPageChange: boolean = false;
@@ -108,7 +110,7 @@ export class Loading {
           a.destroy();
           this.ionLoadingDidDismiss.emit({ loading: this });
 
-          Context.dom.write(() => {
+          this.domController.write(() => {
             this.el.parentNode.removeChild(this.el);
           });
 

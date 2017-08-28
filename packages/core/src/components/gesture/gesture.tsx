@@ -1,6 +1,7 @@
+import { Component, DomController, Element, Event, EventEmitter, EventListenerEnable, Listen, Prop, PropDidChange } from '@stencil/core';
 import { applyStyles, getElementReference, pointerCoordX, pointerCoordY } from '../../utils/helpers';
 import { BlockerDelegate, GestureController, GestureDelegate, BLOCK_ALL } from '../gesture-controller/gesture-controller';
-import { Component, Element, Event, EventEmitter, Listen, Prop, PropDidChange } from '@stencil/core';
+
 import { PanRecognizer } from './recognizers';
 
 
@@ -46,6 +47,8 @@ export class Gesture {
   @Prop() onPress: GestureCallback;
   @Prop() notCaptured: GestureCallback;
 
+  @Prop({ context: 'dom'}) domController: DomController;
+  @Prop({ context: 'enableListener'}) enableListener: EventListenerEnable;
 
   ionViewDidLoad() {
     // in this case, we already know the GestureController and Gesture are already
@@ -63,10 +66,10 @@ export class Gesture {
     this.hasPress = (types.indexOf('press') > -1);
 
     if (this.pan || this.hasPress) {
-      Context.enableListener(this, 'touchstart', true, this.attachTo);
-      Context.enableListener(this, 'mousedown', true, this.attachTo);
+      this.enableListener(this, 'touchstart', true, this.attachTo);
+      this.enableListener(this, 'mousedown', true, this.attachTo);
 
-      Context.dom.write(() => {
+      this.domController.write(() => {
         applyStyles(getElementReference(this.el, this.attachTo), GESTURE_INLINE_STYLES);
       });
     }
@@ -184,7 +187,7 @@ export class Gesture {
         if (!this.isMoveQueued) {
           this.isMoveQueued = true;
 
-          Context.dom.write(() => {
+          this.domController.write(() => {
             this.isMoveQueued = false;
             detail.type = 'pan';
 
@@ -354,17 +357,17 @@ export class Gesture {
 
   private enableMouse(shouldEnable: boolean) {
     if (this.requiresMove) {
-      Context.enableListener(this, 'document:mousemove', shouldEnable);
+      this.enableListener(this, 'document:mousemove', shouldEnable);
     }
-    Context.enableListener(this, 'document:mouseup', shouldEnable);
+    this.enableListener(this, 'document:mouseup', shouldEnable);
   }
 
 
   private enableTouch(shouldEnable: boolean) {
     if (this.requiresMove) {
-      Context.enableListener(this, 'touchmove', shouldEnable);
+      this.enableListener(this, 'touchmove', shouldEnable);
     }
-    Context.enableListener(this, 'touchend', shouldEnable);
+    this.enableListener(this, 'touchend', shouldEnable);
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Prop, PropDidChange } from '@stencil/core';
+import { AddEventListener, Component, DomController, Element, Event, EventEmitter, Prop, PropDidChange } from '@stencil/core';
 import { Config } from '../../index';
 import { MenuController } from './menu-controller';
 import { MenuType } from './menu-types';
@@ -36,6 +36,9 @@ export class Menu {
   @Event() ionClose: EventEmitter;
 
   @Prop({ context: 'config' }) config: Config;
+  @Prop({ context: 'dom'}) domController: DomController;
+  @Prop({ context: 'addListener'}) addListener: AddEventListener;
+
 
   /**
    * @hidden
@@ -311,7 +314,7 @@ export class Menu {
       this._activeBlock = GESTURE_BLOCKER;
 
       // add css class
-      Context.dom.write(() => {
+      this.domController.write(() => {
         this._cntElm.classList.add('menu-content-open');
       });
 
@@ -323,7 +326,7 @@ export class Menu {
       this._activeBlock = null;
 
       // remove css classes
-      Context.dom.write(() => {
+      this.domController.write(() => {
         this._cntElm.classList.remove('menu-content-open');
         this._cntElm.classList.remove('show-menu');
         this._backdropElm.classList.remove('show-menu');
@@ -481,8 +484,8 @@ export class Menu {
     const onBackdropClick = this.onBackdropClick.bind(this);
 
     if (shouldAdd && !this._unregBdClick) {
-      this._unregBdClick = Context.addListener(this._cntElm, 'click', onBackdropClick, { capture: true });
-      this._unregCntClick = Context.addListener(this._cntElm, 'click', onBackdropClick, { capture: true });
+      this._unregBdClick = this.addListener(this._cntElm, 'click', onBackdropClick, { capture: true });
+      this._unregCntClick = this.addListener(this._cntElm, 'click', onBackdropClick, { capture: true });
 
     } else if (!shouldAdd && this._unregBdClick) {
       this._unregBdClick();

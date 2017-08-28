@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, DomController, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 import { AnimationBuilder, AnimationController, Animation } from '../../index';
 import { createThemedClasses } from '../../utils/theme';
 
@@ -28,6 +28,8 @@ export class Modal {
   @Event() ionModalDidUnload: EventEmitter;
 
   @Prop({ connect: 'ion-animation-controller' }) animationCtrl: AnimationController;
+  @Prop({ context: 'dom'}) domController: DomController;
+
   @Prop() mode: string;
   @Prop() color: string;
   @Prop() component: string;
@@ -105,7 +107,7 @@ export class Modal {
           a.destroy();
           this.ionModalDidDismiss.emit({ modal: this });
 
-          Context.dom.write(() => {
+          this.domController.write(() => {
             this.el.parentNode.removeChild(this.el);
           });
           resolve();

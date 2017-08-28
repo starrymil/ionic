@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
+import { Component, DomController, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 import { AnimationBuilder, Animation, AnimationController, Config, CssClassMap } from '../../index';
 
 import { createThemedClasses } from '../../utils/theme';
@@ -31,6 +31,7 @@ export class Toast {
 
   @Prop({ connect: 'ion-animation-controller' }) animationCtrl: AnimationController;
   @Prop({ context: 'config' }) config: Config;
+  @Prop({ context: 'dom'}) domController: DomController;
 
   @Prop() message: string;
   @Prop() cssClass: string;
@@ -101,7 +102,7 @@ export class Toast {
           a.destroy();
           this.ionToastDidDismiss.emit({ toast: this });
 
-          Context.dom.write(() => {
+          this.domController.write(() => {
             this.el.parentNode.removeChild(this.el);
           });
 

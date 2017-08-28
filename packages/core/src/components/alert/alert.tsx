@@ -1,5 +1,5 @@
 
-import { Component, CssClassMap, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, CssClassMap, DomController, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 import { AnimationBuilder, Animation, AnimationController, Config } from '../../index';
 
 import iOSEnterAnimation from './animations/ios.enter';
@@ -32,6 +32,7 @@ export class Alert {
 
   @Prop({ connect: 'ion-animation-controller' }) animationCtrl: AnimationController;
   @Prop({ context: 'config' }) config: Config;
+  @Prop({ context: 'dom'}) domController: DomController;
 
   @Prop() cssClass: string;
   @Prop() title: string;
@@ -103,7 +104,7 @@ export class Alert {
           a.destroy();
           this.ionAlertDidDismiss.emit({ alert: this });
 
-          Context.dom.write(() => {
+          this.domController.write(() => {
             this.el.parentNode.removeChild(this.el);
           });
 

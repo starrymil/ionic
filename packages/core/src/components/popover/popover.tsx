@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
+import { Component, DomController, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
 import { AnimationBuilder, Animation, AnimationController, Config } from '../../index';
 
 import { createThemedClasses } from '../../utils/theme';
@@ -33,6 +33,7 @@ export class Popover {
 
   @Prop({ connect: 'ion-animation-controller' }) animationCtrl: AnimationController;
   @Prop({ context: 'config' }) config: Config;
+  @Prop({ context: 'dom'}) domController: DomController;
 
   @Prop() mode: string;
   @Prop() color: string;
@@ -227,7 +228,7 @@ export class Popover {
           a.destroy();
           this.ionPopoverDidDismiss.emit({ popover: this });
 
-          Context.dom.write(() => {
+          this.domController.write(() => {
             this.el.parentNode.removeChild(this.el);
           });
 
