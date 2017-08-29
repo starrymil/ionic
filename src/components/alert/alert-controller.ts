@@ -136,6 +136,7 @@ import { Config } from '../../config/config';
  *  | subTitle              | `string`  | The subtitle for the alert.                                                  |
  *  | message               | `string`  | The message for the alert.                                                   |
  *  | cssClass              | `string`  | Additional classes for custom styles, separated by spaces.                   |
+ *  | mode                  | `string`  | The mode to use for alert. Available options: "ios", "md", "wp"              |
  *  | inputs                | `array`   | An array of inputs for the alert. See input options.                         |
  *  | buttons               | `array`   | An array of buttons for the alert. See buttons options.                      |
  *  | enableBackdropDismiss | `boolean` | Whether the alert should be dismissed by tapping the backdrop. Default true. |
